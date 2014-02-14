@@ -147,8 +147,7 @@ $(function ()
 		// Normal key
 		last = now;
 		lastChar = event.charCode;
-		var s = String.fromCharCode (event.charCode);
-		addChar (s);
+		addChar (String.fromCharCode (event.charCode));
 		event.stopPropagation();
 	});
 });
