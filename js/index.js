@@ -9,25 +9,19 @@ var multipleKeys = [
 ];
 var timeToMultiple = 1000;
 
-// Audio
-var enterAudio;
-var keyAudio;
-
 // Functions
-function resetAudio ()
+function play (url)
 {
-	try
-	{
-		enterAudio.pause ();
-		keyAudio.pause ();
-	}
-	catch (v)
-	{
-		console.log (v);
-	}
-	enterAudio = new Audio('audio/enter.wav');
-	keyAudio = new Audio('audio/key.wav');
+	new Audio (url).play ();
+}
+function playEnter ()
+{
+	play ('audio/enter.wav');
+}
 
+function playKey ()
+{
+	play ('audio/key.wav');
 }
 function showKey (selector, delay)
 {
@@ -113,19 +107,16 @@ $(function ()
 	// Event
 	$(document).keypress (function (event)
 	{
-		// Stop sounds
-		resetAudio ();
-
 		// Enter
 		if (event.charCode == 13)
 		{
 			showPressedSpecial (".specialKey.enter");
 			$span.empty();
-			enterAudio.play();
+			playEnter ();
 			return;
 		}
 
-		keyAudio.play();
+		playKey ();
 		
 		// Delete
 		if (event.charCode == deleteKey)
