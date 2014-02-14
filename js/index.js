@@ -145,7 +145,6 @@ $(function ()
 		}
 
 		// Normal key
-		last = now;
 		lastChar = event.charCode;
 		addChar (String.fromCharCode (event.charCode));
 	});
