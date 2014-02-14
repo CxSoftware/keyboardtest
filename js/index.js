@@ -148,6 +148,5 @@ $(function ()
 		last = now;
 		lastChar = event.charCode;
 		addChar (String.fromCharCode (event.charCode));
-		event.stopPropagation();
 	});
 });
