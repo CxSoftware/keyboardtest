@@ -125,12 +125,12 @@ $(function ()
 		}
 		
 		// Multiple
-		var now = (new Date()).getTime();
 		var found = Enumerable.From (multipleKeys)
 			.Where (function (x) { return x.code == event.charCode; })
 			.FirstOrDefault();
 		if (found !== undefined)
 		{
+			var now = (new Date()).getTime();
 			var isFirst = (lastChar != event.charCode || now - last > timeToMultiple);
 			if (isFirst)
 				multipleIndex = 0;
