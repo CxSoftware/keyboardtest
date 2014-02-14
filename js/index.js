@@ -97,7 +97,6 @@ $(function ()
 	var last = 0;
 	var lastChar = null;
 	var multipleIndex = 0;
-	var $span = $('#textbox span');
 	$('.keys').hide();
 
 	// Event
@@ -107,7 +106,7 @@ $(function ()
 		if (event.charCode == 13)
 		{
 			showPressedSpecial (".specialKey.enter");
-			$span.empty();
+			$('#textbox span').empty();
 			playEnter ();
 			lastChar = event.charCode;
 			return;
