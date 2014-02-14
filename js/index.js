@@ -147,7 +147,6 @@ $(function ()
 		// Normal key
 		last = now;
 		lastChar = event.charCode;
-		multipleIndex = 0;
 		var s = String.fromCharCode (event.charCode);
 		addChar (s);
 		event.stopPropagation();
