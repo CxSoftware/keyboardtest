@@ -1,4 +1,5 @@
 // Config
+var enterKey = 13;
 var deleteKey = 44;
 var multipleKeys = [
 	{ 'code': 97, 'characters': [ 'a', 'á' ] },
@@ -103,7 +104,7 @@ $(function ()
 	$(document).keypress (function (event)
 	{
 		// Enter
-		if (event.charCode == 13)
+		if (event.charCode == enterKey)
 		{
 			showPressedSpecial (".specialKey.enter");
 			$('#textbox span').empty();
