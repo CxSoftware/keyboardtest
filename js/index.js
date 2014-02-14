@@ -63,18 +63,24 @@ function showPressedMultiple (item, charIndex, first)
 	if (first)
 	{
 		// Clear and add keys
-		$('#multiple')
+		$('#multiple > .container')
 			.empty();
 		$.each (item.characters, function (i, item)
 		{
-			$('#multiple').append ($('<div>').text (item));
+			$('#multiple > .container').append ($('<div>').text (item));
 		});
 	}
 
 	// Highlight selected
-	$('#multiple > div')
+	$('#multiple > .container > div')
 		.removeClass ('selected')
 		.eq (charIndex).addClass ('selected');
+
+	// Animate progress
+	$('#multiple > .progressContainer > div')
+		.finish ()
+		.css ('width', '0%')
+		.animate ({ 'width': '100%'}, timeToMultiple);
 	
 	showKey ('#multiple', timeToMultiple);				
 }

@@ -73,7 +73,7 @@ body
 	border-radius: 25px;
 	text-align: center;
 }
-#multiple > div
+#multiple > .container > div
 {
 	display: inline-block;
 	width: 100px;
@@ -85,7 +85,26 @@ body
 	color: white;
 	border-radius: 25px;
 }
-#multiple > div.selected
+#multiple > .container > div.selected
 {
 	background: rgba(0, 0, 0, 0.5);
+}
+
+#multiple > .progressContainer
+{
+	position: absolute;
+	bottom: 10px;
+	left: 25px;
+	right: 25px;
+	height: 4px;
+}
+
+#multiple > .progressContainer > div
+{
+	position: absolute;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	background: white;
 }
