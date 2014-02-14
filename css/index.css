@@ -25,7 +25,7 @@ body
 	display: inline-block;
 	width: 8px;
 	height: 45px;
-	background: url(images/cursor.gif);
+	background: url(../images/cursor.gif);
 }
 #pressed
 {
@@ -54,11 +54,11 @@ body
 }
 .specialKey.enter
 {
-	background: url(images/enter.png);
+	background: url(../images/enter.png);
 }
 .specialKey.backspace
 {
-	background: url(images/backspace.png);
+	background: url(../images/backspace.png);
 }
 #multiple
 {
