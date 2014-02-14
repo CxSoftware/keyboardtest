@@ -113,6 +113,7 @@ $(function ()
 			showPressedSpecial (".specialKey.enter");
 			$span.empty();
 			playEnter ();
+			lastChar = event.charCode;
 			return;
 		}
 
@@ -123,6 +124,7 @@ $(function ()
 		{
 			showPressedSpecial (".specialKey.backspace");
 			deleteChar();
+			lastChar = event.charCode;
 			return;
 		}
 		
