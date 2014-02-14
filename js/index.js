@@ -29,7 +29,7 @@ function showKey (selector, delay)
 	$('.keys').not (selector)
 		.finish ()
 		.hide ();
-	
+
 	if ($(selector).is(':visible'))
 		$(selector)
 			.finish()
@@ -139,7 +139,6 @@ $(function ()
 			else
 				deleteChar();
 			var indexToShow = multipleIndex++ % found.characters.length;
-			console.log (found, indexToShow, isFirst);
 			$('#textbox span').append (found.characters [indexToShow]);
 			showPressedMultiple (found, indexToShow, isFirst);
 			last = now;
@@ -151,7 +150,6 @@ $(function ()
 		last = now;
 		lastChar = event.charCode;
 		multipleIndex = 0;
-		console.log(event.charCode);
 		var s = String.fromCharCode (event.charCode);
 		addChar (s);
 		event.stopPropagation();
