@@ -90,10 +90,6 @@ function deleteChar ()
 	var newText = currentText.substr (0, currentText.length - 1);
 	$span.text (newText);
 }
-function getLastChar ()
-{
-	return $('#textbox span').text ().slice(-1);
-}
 
 $(function ()
 {
