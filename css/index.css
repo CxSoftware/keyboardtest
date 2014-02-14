@@ -1,0 +1,91 @@
+body
+{
+	background: #3E608E;
+	text-align: center;
+	padding: 100px;
+	cursor: none;
+}
+#textbox
+{
+	position: absolute;
+	left: 100px;
+	right: 100px;
+	top: 100px;
+	bottom: 100px;
+	background: white;
+	padding: 50px;
+	font-size: 60px;
+	font-weight: bold;
+	font-family: "Courier New", Courier, monospace;
+	overflow: hidden;
+}
+#cursor
+{
+	margin-left: 5px;
+	display: inline-block;
+	width: 8px;
+	height: 45px;
+	background: url(images/cursor.gif);
+}
+#pressed
+{
+	position: absolute;
+	left: 50%;
+	margin-left: -50px;
+	bottom: 200px;
+	width: 100px;
+	height: 100px;
+	font-size: 80px;
+	font-weight: bold;
+	font-family: "Courier New", Courier, monospace;
+	padding: 20px;
+	background: rgba(0, 0, 0, 0.5);
+	color: white;
+	border-radius: 25px;
+}
+.specialKey
+{
+	width: 200px;
+	height: 96px;
+	position: absolute;
+	left: 50%;
+	margin-left: -100px;
+	bottom: 200px;
+}
+.specialKey.enter
+{
+	background: url(images/enter.png);
+}
+.specialKey.backspace
+{
+	background: url(images/backspace.png);
+}
+#multiple
+{
+	position: absolute;
+	left: 50%;
+	margin-left: -200px;
+	bottom: 200px;
+	width: 400px;
+	height: 140px;
+	padding: 20px;
+	background: rgba(0, 0, 0, 0.3);
+	border-radius: 25px;
+	text-align: center;
+}
+#multiple > div
+{
+	display: inline-block;
+	width: 100px;
+	height: 100px;
+	font-size: 80px;
+	font-weight: bold;
+	font-family: "Courier New", Courier, monospace;
+	padding: 20px;
+	color: white;
+	border-radius: 25px;
+}
+#multiple > div.selected
+{
+	background: rgba(0, 0, 0, 0.5);
+}
