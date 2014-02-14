@@ -15,15 +15,6 @@ function play (url)
 {
 	new Audio (url).play ();
 }
-function playEnter ()
-{
-	play ('audio/enter.wav');
-}
-
-function playKey ()
-{
-	play ('audio/key.wav');
-}
 function showKey (selector, delay)
 {
 	// Hide all others
@@ -108,12 +99,12 @@ $(function ()
 		{
 			showPressedSpecial (".specialKey.enter");
 			$('#textbox span').empty();
-			playEnter ();
+			play ('audio/enter.wav');
 			lastChar = event.charCode;
 			return;
 		}
 
-		playKey ();
+		play ('audio/key.wav');
 		
 		// Delete
 		if (event.charCode == deleteKey)
