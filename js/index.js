@@ -2,11 +2,16 @@
 var enterKey = 13;
 var deleteKey = 44;
 var multipleKeys = [
-	{ 'code': 97, 'characters': [ 'a', 'á' ] },
+	{ 'code': 97,  'characters': [ 'a', 'á' ] },
 	{ 'code': 101, 'characters': [ 'e', 'é' ] },
 	{ 'code': 105, 'characters': [ 'i', 'í' ] },
 	{ 'code': 111, 'characters': [ 'o', 'ó' ] },
-	{ 'code': 117, 'characters': [ 'u', 'ú' ] }
+	{ 'code': 117, 'characters': [ 'u', 'ú' ] },
+	{ 'code': 161, 'characters': [ '¡', '!' ] },
+	{ 'code': 39,  'characters': [ '¿', '?' ] },
+	{ 'code': 49,  'characters': [ '1', ':' ] },
+	{ 'code': 50,  'characters': [ '2', ',' ] },
+	{ 'code': 45,  'characters': [ '-', '_' ] }
 ];
 var timeToMultiple = 1000;
 
@@ -94,6 +99,7 @@ $(function ()
 	// Event
 	$(document).keypress (function (event)
 	{
+		console.log (event.charCode);
 		// Enter
 		if (event.charCode == enterKey)
 		{
