@@ -108,3 +108,17 @@ body
 	width: 100%;
 	background: white;
 }
+
+#shift
+{
+	position: absolute;
+	right: 10px;
+	bottom: 10px;
+	width: 200px;
+	height: 50px;
+	font-size: 50px;
+	background: #aa0000;
+	color: white;
+	font-family: "Courier New", Courier, monospace;
+	font-weight: bold;
+}
