@@ -1,4 +1,5 @@
 // Config
+var debug = false;
 var enterKey = 13;
 var deleteKey = 8;
 var shiftKey = 16;
@@ -55,7 +56,6 @@ function showPressedSpecial (name)
 }
 function showPressedMultiple (item, charIndex, first, shifted)
 {
-	console.log (shifted);
 	// First? 
 	if (first)
 	{
@@ -91,7 +91,6 @@ function showPressedMultiple (item, charIndex, first, shifted)
 
 	if (shifted)
 	{
-		console.log ('shifted');
 		$('#shift')
 			.show ();
 
@@ -126,7 +125,9 @@ $(function ()
 	// Event
 	$(document).keydown (function (event)
 	{
-		console.log (event.keyCode);
+		if (debug)
+			console.log (event.keyCode);
+
 		// Enter
 		if (event.keyCode == enterKey)
 		{
