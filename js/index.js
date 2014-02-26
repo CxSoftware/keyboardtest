@@ -1,14 +1,18 @@
 // Config
 var enterKey = 13;
-var deleteKey = 44;
+var deleteKey = 8;
+var shiftKey = 16;
+var mapedKeys = [
+	{ 'code': 186, 'character': 'ñ' }
+];
 var multipleKeys = [
-	{ 'code': 97,  'characters': [ 'a', 'á' ] },
-	{ 'code': 101, 'characters': [ 'e', 'é' ] },
+	{ 'code': 65, 'characters': [ 'a', 'á' ] },
+	{ 'code': 69, 'characters': [ 'e', 'é' ] },
 	{ 'code': 105, 'characters': [ 'i', 'í' ] },
 	{ 'code': 111, 'characters': [ 'o', 'ó' ] },
 	{ 'code': 117, 'characters': [ 'u', 'ú' ] },
-	{ 'code': 161, 'characters': [ '¡', '!' ] },
-	{ 'code': 39,  'characters': [ '¿', '?' ] },
+	{ 'code': 187, 'characters': [ '¡', '!' ] },
+	{ 'code': 189, 'characters': [ '¿', '?' ] },
 	{ 'code': 49,  'characters': [ '1', ':' ] },
 	{ 'code': 50,  'characters': [ '2', ',' ] },
 	{ 'code': 45,  'characters': [ '-', '_' ] }
@@ -43,6 +47,7 @@ function showPressed (s)
 	$('#pressed')
 		.text (s);
 	showKey ('#pressed', 400);
+	$('#shift').hide ();
 }
 function showPressedSpecial (name)
 {
@@ -95,40 +100,52 @@ $(function ()
 	var lastChar = null;
 	var multipleIndex = 0;
 	$('.keys').hide();
+	$('#shift').hide();
 
 	// Event
-	$(document).keypress (function (event)
+	$(document).keydown (function (event)
 	{
-		console.log (event.charCode);
+		console.log (event.keyCode);
 		// Enter
-		if (event.charCode == enterKey)
+		if (event.keyCode == enterKey)
 		{
 			showPressedSpecial (".specialKey.enter");
 			$('#textbox span').empty();
 			play ('audio/enter.wav');
-			lastChar = event.charCode;
+			lastChar = event.keyCode;
 			return;
 		}
 
 		play ('audio/key.wav');
 		
 		// Delete
-		if (event.charCode == deleteKey)
+		if (event.keyCode == deleteKey)
 		{
 			showPressedSpecial (".specialKey.backspace");
 			deleteChar();
-			lastChar = event.charCode;
+			lastChar = event.keyCode;
+			return;
+		}
+
+		// Mapped
+		var foundMapped = Enumerable.From (mapedKeys)
+			.Where (function (x) { return x.code == event.keyCode; })
+			.FirstOrDefault ();
+		if (foundMapped)
+		{
+			lastChar = event.keyCode
+			addChar (foundMapped.character);
 			return;
 		}
 		
 		// Multiple
 		var found = Enumerable.From (multipleKeys)
-			.Where (function (x) { return x.code == event.charCode; })
+			.Where (function (x) { return x.code == event.keyCode; })
 			.FirstOrDefault();
 		if (found !== undefined)
 		{
 			var now = (new Date()).getTime();
-			var isFirst = (lastChar != event.charCode || now - last > timeToMultiple);
+			var isFirst = (lastChar != event.keyCode || now - last > timeToMultiple);
 			if (isFirst)
 				multipleIndex = 0;
 			else
@@ -137,12 +154,20 @@ $(function ()
 			$('#textbox span').append (found.characters [indexToShow]);
 			showPressedMultiple (found, indexToShow, isFirst);
 			last = now;
-			lastChar = event.charCode;
+			lastChar = event.keyCode;
+			return;
+		}
+
+		// Shift
+		if (event.keyCode == shiftKey)
+		{
+			$('#shift').toggle ();
 			return;
 		}
 
 		// Normal key
-		lastChar = event.charCode;
-		addChar (String.fromCharCode (event.charCode));
+		var s = String.fromCharCode (event.keyCode);
+		lastChar = event.keyCode;
+		addChar (s);
 	});
 });
