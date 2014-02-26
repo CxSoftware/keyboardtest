@@ -47,14 +47,15 @@ function showPressed (s)
 	$('#pressed')
 		.text (s);
 	showKey ('#pressed', 400);
-	$('#shift').hide ();
+	$('#shift').hide();
 }
 function showPressedSpecial (name)
 {
 	showKey (name, 400);
 }
-function showPressedMultiple (item, charIndex, first)
+function showPressedMultiple (item, charIndex, first, shifted)
 {
+	console.log (shifted);
 	// First? 
 	if (first)
 	{
@@ -63,7 +64,11 @@ function showPressedMultiple (item, charIndex, first)
 			.empty();
 		$.each (item.characters, function (i, item)
 		{
-			$('#multiple > .container').append ($('<div>').text (item));
+			$('#multiple > .container')
+				.append ($('<div>')
+					.text ($('#shift').is(':visible') ?
+						item.toUpperCase () :
+						item.toLowerCase ()));
 		});
 	}
 
@@ -78,7 +83,22 @@ function showPressedMultiple (item, charIndex, first)
 		.css ('width', '0%')
 		.animate ({ 'width': '100%'}, timeToMultiple);
 	
-	showKey ('#multiple', timeToMultiple);				
+	showKey ('#multiple', timeToMultiple);
+
+	$('#shift')
+		.finish ()
+		.hide ();
+
+	if (shifted)
+	{
+		console.log ('shifted');
+		$('#shift')
+			.show ();
+
+		$('#shift')
+			.delay (timeToMultiple)
+			.hide ('fade');
+	}
 }
 function addChar (s)
 {
@@ -101,6 +121,7 @@ $(function ()
 	var multipleIndex = 0;
 	$('.keys').hide();
 	$('#shift').hide();
+	var isShifted = false;
 
 	// Event
 	$(document).keydown (function (event)
@@ -134,7 +155,9 @@ $(function ()
 		if (foundMapped)
 		{
 			lastChar = event.keyCode
-			addChar (foundMapped.character);
+			addChar ($('#shift').is (':visible') ?
+				foundMapped.character.toUpperCase () :
+				foundMapped.character.toLowerCase ());
 			return;
 		}
 		
@@ -147,12 +170,19 @@ $(function ()
 			var now = (new Date()).getTime();
 			var isFirst = (lastChar != event.keyCode || now - last > timeToMultiple);
 			if (isFirst)
+			{
 				multipleIndex = 0;
+				isShifted = $('#shift').is (':visible');
+			}
 			else
+			{
 				deleteChar();
+			}
 			var indexToShow = multipleIndex++ % found.characters.length;
-			$('#textbox span').append (found.characters [indexToShow]);
-			showPressedMultiple (found, indexToShow, isFirst);
+			$('#textbox span').append (isShifted ?
+				found.characters [indexToShow].toUpperCase () :
+				found.characters [indexToShow].toLowerCase ());
+			showPressedMultiple (found, indexToShow, isFirst, isShifted);
 			last = now;
 			lastChar = event.keyCode;
 			return;
@@ -166,8 +196,10 @@ $(function ()
 		}
 
 		// Normal key
-		var s = String.fromCharCode (event.keyCode);
 		lastChar = event.keyCode;
-		addChar (s);
+		var s = String.fromCharCode (event.keyCode);
+		addChar ($('#shift').is(':visible') ?
+			s.toUpperCase () :
+			s.toLowerCase ());
 	});
 });
